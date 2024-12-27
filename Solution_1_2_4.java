@@ -1,0 +1,17 @@
+package Assignment_1_2;
+
+import java.util.Scanner;
+public class Solution_1_2_4 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the keyboard
+        Scanner scanner = new Scanner(System.in);
+        // Prompt the user to enter their age
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt(); // Read the age
+        // Check the condition and display the message if age is out of range
+        if (age < 20 || age > 60) {
+            System.out.println("You don’t have to work.");
+        }
+        scanner.close(); // Close the scanner
+    }
+}
