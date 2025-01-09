@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Solution_2_1_6 {
+    public static int[] array;
+
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+
+        // Step 1: Read the number N
+        int N = scanner.nextInt();
+
+        // Step 2: Initialize the array
+        array = new int[N];
+
+        // Step 3: Fill the array with N integers
+        for (int i = 0; i < N; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        // Step 4: Find the maximum number
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+
+        // Step 5: Print the maximum number
+        System.out.println(max);
+    }
+}
