@@ -1,0 +1,39 @@
+public class Solution_2_2_6 {
+
+    public static void main(String[] args) {
+        universalMethod(10, 5, "sum");
+        universalMethod("Hello", "World", "concat");
+        universalMethod(new int[]{1, 2, 3, 4, 5}, "print");
+        universalMethod(true, false, "xor");
+        universalMethod(2.5, 3.14, "product");
+        universalMethod("apple", 3, "reverse"); // New operation - reverse string
+        universalMethod(new int[]{1, 4, 2, 8, 5}, "average"); // New operation - calculate average
+        universalMethod(10, "isEven");
+        universalMethod("racecar", "isPalindrome");
+        universalMethod(new int[]{1, 2, 3, 4, 5}, new int[]{5, 4, 3, 2, 1}, "compare");
+    }
+
+    public static void universalMethod(Object... args) {
+        String op = (String) args[args.length - 1];
+        switch (op) {
+            case "sum" -> System.out.println("Sum: " + ((int) args[0] + (int) args[1]));
+            case "concat" -> System.out.println("Concatenated: " + args[0] + args[1]);
+            case "print" -> System.out.println("Array: " + java.util.Arrays.toString((int[]) args[0]));
+            case "xor" -> System.out.println("XOR: " + ((boolean) args[0] ^ (boolean) args[1]));
+            case "product" -> System.out.println("Product: " + ((double) args[0] * (double) args[1]));
+            case "reverse" -> System.out.println("Reversed: " + new StringBuilder((String) args[0]).reverse().toString()); // Reverse string
+            case "average" -> {
+                int[] arr = (int[]) args[0];
+                double sum = 0;
+                for (int num : arr) {
+                    sum += num;
+                }
+                System.out.println("Average: " + sum / arr.length); // Calculate average
+            }
+            case "isEven" -> System.out.println("Is Even: " + ((int) args[0] % 2 == 0));
+            case "isPalindrome" -> System.out.println("Is Palindrome: " + ((String) args[0]).equals(new StringBuilder((String) args[0]).reverse().toString()));
+            case "compare" -> System.out.println("Arrays Equal: " + java.util.Arrays.equals((int[]) args[0], (int[]) args[1]));
+            default -> System.out.println("Invalid operation.");
+        }
+    }
+}
