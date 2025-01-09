@@ -1,0 +1,33 @@
+public class Solution_2_1_17 {
+    public static char[][] chars = {
+            {'a', 'b', 'c', 'd', 'e', 'f'},
+            {'g', 'h', 'i', 'j', 'k', 'l'},
+            {'m', 'n', 'o', 'p', 'q', 'r'},
+            {'s', 't', 'u', 'v', 'w', 'x'}
+    };
+
+    public static void main(String[] args) {
+        printArray();  // Print the original array
+        replaceInternalElements();  // Replace internal elements with '-'
+        printArray();  // Print the modified array
+    }
+
+    private static void replaceInternalElements() {
+        // Loop through the array and replace internal elements with '-'
+        for (int i = 1; i < chars.length - 1; i++) {  // Start from row 1 and stop before last row
+            for (int j = 1; j < chars[i].length - 1; j++) {  // Start from column 1 and stop before last column
+                chars[i][j] = '-';  // Replace internal element with '-'
+            }
+        }
+    }
+
+    private static void printArray() {
+        for (int i = 0; i < chars.length; i++) {
+            for (int j = 0; j < chars[i].length; j++) {
+                System.out.print(chars[i][j] + " ");  // Print each element
+            }
+            System.out.println();  // Move to the next line after printing each row
+        }
+        System.out.println();  // Add a blank line between prints
+    }
+}
