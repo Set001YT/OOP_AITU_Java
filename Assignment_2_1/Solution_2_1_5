@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Solution_2_1_5 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Step 1: Read integer N from the console
+        int N = scanner.nextInt();
+
+        if (N > 0) {
+            int[] numbers = new int[N];
+
+            // Step 2: Read N integers
+            for (int i = 0; i < N; i++) {
+                numbers[i] = scanner.nextInt();
+            }
+
+            // Step 3: Output numbers
+            if (N % 2 == 0) {
+                // Reverse order if N is even
+                for (int i = N - 1; i >= 0; i--) {
+                    System.out.println(numbers[i]);
+                }
+            } else {
+                // Same order if N is odd
+                for (int i = 0; i < N; i++) {
+                    System.out.println(numbers[i]);
+                }
+            }
+        }
+    }
+}
