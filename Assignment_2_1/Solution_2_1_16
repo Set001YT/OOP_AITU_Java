@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Solution_2_1_16 {
+    public static char[][] array;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the height of the pyramid from the keyboard
+        System.out.print("Enter the height of the pyramid: ");
+        int height = scanner.nextInt();
+
+        // Initialize the array with appropriate size
+        // The width of the array is 2 * height - 1, the height is given by the user
+        array = new char[height][2 * height - 1];
+
+        // Fill the array to form the pyramid
+        for (int i = 0; i < height; i++) {
+            // Number of hashes in row i is 2 * i + 1
+            int numHashes = 2 * i + 1;
+            // Start position for hashes in row i is (height - 1) - i (centered)
+            int startPos = height - i - 1;
+
+            // Fill the current row with spaces and then hashes
+            for (int j = 0; j < array[i].length; j++) {
+                if (j >= startPos && j < startPos + numHashes) {
+                    array[i][j] = '#';  // Place a hash in the correct position
+                } else {
+                    array[i][j] = ' ';  // Background space
+                }
+            }
+        }
+
+        // Display the array
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j]);
+            }
+            System.out.println();  // Move to the next row
+        }
+    }
+}
