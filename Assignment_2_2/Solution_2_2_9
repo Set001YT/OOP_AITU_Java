@@ -1,0 +1,38 @@
+/*
+Struggle for access
+*/
+public class Solution_2_2_9 {
+    public static void main(String[] args) {
+        Person person = new Person("Ivan", "Ivanov");
+        System.out.println("Dossier.");
+        System.out.println("Name: " + person.getFirstName());
+        System.out.println("LastName: " + person.getLastName());
+        System.out.println("Full name: " + person.getFullName());
+    }
+}
+
+class Person {
+    private String firstName;
+    private String lastName;
+
+    // Constructor
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    // Getter for firstName
+    public String getFirstName() {
+        return firstName;
+    }
+
+    // Getter for lastName
+    public String getLastName() {
+        return lastName;
+    }
+
+    // Getter for fullName
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+}
