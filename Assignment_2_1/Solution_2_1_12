@@ -1,0 +1,24 @@
+public class Solution_2_1_12 {
+    // Initialize the array as a 2x3 array of integers
+    public static int[][] array = new int[2][3]; // 2 rows, 3 columns
+
+    public static void main(String[] args) {
+        // Fill the array with non-zero integers
+        array[0][0] = 1;
+        array[0][1] = 2;
+        array[0][2] = 3;
+        array[1][0] = 4;
+        array[1][1] = 5;
+        array[1][2] = 6;
+
+        // Loop through the array and display each element in the same row
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                // Print the element followed by a space, but not a newline
+                System.out.print(array[i][j] + " ");
+            }
+            // Print a newline after each row
+            System.out.println();
+        }
+    }
+}
