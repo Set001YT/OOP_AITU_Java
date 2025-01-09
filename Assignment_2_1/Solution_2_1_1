@@ -1,0 +1,26 @@
+public class Solution_2_1_1 {
+    public static void main(String[] args) {
+        // Step 1: Declare and initialize intArray
+        int[] intArray = new int[10]; // An integer array of size 10
+        for (int i = 0; i < intArray.length; i++) {
+            intArray[i] = i + 1; // Assigning values 1 to 10
+        }
+
+        // Step 2: Declare and initialize doubleArray
+        double[] doubleArray = new double[10]; // A double array of size 10
+        for (int i = 0; i < doubleArray.length; i++) {
+            doubleArray[i] = (i + 1) * 1.1; // Assigning 1.1, 2.2, ..., 10.10
+        }
+
+        // Step 3: Print the arrays with formatted output
+        System.out.println("intArray:");
+        for (int num : intArray) {
+            System.out.print(num + " ");
+        }
+
+        System.out.println("\ndoubleArray:");
+        for (double num : doubleArray) {
+            System.out.printf("%.1f ", num); // Format to 1 decimal place
+        }
+    }
+}
