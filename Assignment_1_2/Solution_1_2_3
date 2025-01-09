@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Solution_1_2_3 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the keyboard
+        Scanner scanner = new Scanner(System.in);
+        // Prompt the user to enter the body temperature
+        System.out.print("Enter your body temperature: ");
+        double temperature = scanner.nextDouble(); // Read the temperature
+        // Declare Boolean variables for high and low temperature
+        boolean isHigh = temperature > 37.5; // High temperature condition
+        boolean isLow = temperature < 36.0; // Low temperature condition
+        // Check the conditions and display the appropriate message
+        if (isHigh) {
+            System.out.println("Your body temperature is high.");
+        } else if (isLow) {
+            System.out.println("Your body temperature is low.");
+        } else {
+            System.out.println("Your body temperature is normal.");
+        }
+        scanner.close(); // Close the scanner
+    }
+}
