@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class Solution_2_1_14 {
+    public static int[][] array = new int[3][3]; // 3x3 array
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read 9 numbers from the keyboard to fill the array
+        System.out.println("Enter 9 integers to fill the 3x3 array:");
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                // Fill each element of the array
+                array[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Calculate the sum of each row and column
+        int minSum = Integer.MAX_VALUE; // Initialize to a large value
+
+        // Sum for rows
+        for (int i = 0; i < array.length; i++) {
+            int rowSum = 0;
+            for (int j = 0; j < array[i].length; j++) {
+                rowSum += array[i][j];
+            }
+            if (rowSum < minSum) {
+                minSum = rowSum; // Update minSum if rowSum is smaller
+            }
+        }
+
+        // Sum for columns
+        for (int j = 0; j < array[0].length; j++) {
+            int colSum = 0;
+            for (int i = 0; i < array.length; i++) {
+                colSum += array[i][j];
+            }
+            if (colSum < minSum) {
+                minSum = colSum; // Update minSum if colSum is smaller
+            }
+        }
+
+        // Display the minimum sum
+        System.out.println("The minimum sum of elements in a row or column is: " + minSum);
+    }
+}
