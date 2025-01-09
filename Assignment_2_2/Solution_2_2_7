@@ -1,0 +1,18 @@
+public class Solution_2_2_7 {
+    public static void main(String[] args) {
+        // Test with different usernames
+        signIn("Asset"); // Should greet the user
+        signIn("user"); // Should do nothing
+    }
+
+    public static void signIn(String username) {
+        // Check if the username is "user"
+        if (username.equals("user")) {
+            return; // Abort the method if the username is "user"
+        }
+
+        // If not "user", greet the user
+        System.out.println("Welcome " + username);
+        System.out.println("Missed you very much, " + username);
+    }
+}
