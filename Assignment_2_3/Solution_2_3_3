@@ -1,0 +1,16 @@
+public class Solution_2_3_3 {
+    public static void main(String[] args) {
+        class Vehicle {
+            double maxSpeed; // Common property shared by all vehicles
+        }
+
+         class Car extends Vehicle {
+            int wheelCount; // Specific to cars
+            double weight;  // Specific to cars
+        }
+
+        class ElectricCar extends Car {
+            int electricEnginePower; // Specific to electric cars
+        }
+    }
+}
