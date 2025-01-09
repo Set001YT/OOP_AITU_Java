@@ -1,0 +1,22 @@
+public class Solution_1_2_7 {
+    public static void main(String[] args) {
+        // Define the dimensions of the rectangle
+        int height = 5;
+        int width = 10;
+        // Initialize the row counter
+        int row = 0;
+        // Outer loop for the height
+        while (row < height) {
+            // Initialize the column counter
+            int col = 0;
+            // Inner loop for the width
+            while (col < width) {
+                System.out.print("Q"); // Print 'Q' without a newline
+                col++; // Increment the column counter
+            }
+            System.out.println(); // Move to the next line after printing one row
+            row++; // Increment the row counter
+        }
+    }
+
+}
