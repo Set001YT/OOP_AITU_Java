@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Solution_2_1_13 {
+    public static int[][] array = new int[3][3]; // 3x3 array
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read 9 numbers from the keyboard to fill the array
+        System.out.println("Enter 9 integers to fill the 3x3 array:");
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                // Fill each element of the array
+                array[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Find the maximum element in the array
+        int max = array[0][0]; // Start with the first element as the maximum
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (array[i][j] > max) {
+                    max = array[i][j]; // Update the max if we find a larger number
+                }
+            }
+        }
+
+        // Display the maximum element
+        System.out.println("The maximum element in the array is: " + max);
+    }
+}
