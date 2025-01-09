@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class Solution_1_2_10 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Read start, end, and multiple from the keyboard
+        System.out.print("Enter start: ");
+        int start = scanner.nextInt();
+        System.out.print("Enter end: ");
+        int end = scanner.nextInt();
+        System.out.print("Enter multiple: ");
+        int multiple = scanner.nextInt();
+        int sum = 0;
+        // Use a for loop to iterate through numbers from start to end (not inclusive)
+        for (int number = start; number < end; number++) {
+            // Skip numbers that are not multiples of the given value
+            if (number % multiple != 0) {
+                continue;
+            }
+            // Add the number to the sum
+            sum += number;
+        }
+        // Print the result
+        System.out.println("The sum of numbers from " + start + " to " + end + " that are multiples of " +
+                multiple + " is: " + sum);
+    }
+}
