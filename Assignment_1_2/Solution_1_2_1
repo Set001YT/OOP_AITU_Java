@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class Solution_1_2_1 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the keyboard
+        Scanner scanner = new Scanner(System.in);
+        // Prompt the user to enter the outside temperature
+        System.out.print("Enter the outside temperature: ");
+        int temperature = scanner.nextInt(); // Read the temperature value
+        // Check the temperature and display the appropriate message
+        if (temperature < 0) {
+            System.out.println("it’s cold outside");
+        } else {
+            System.out.println("it’s warm outside");
+        }
+        scanner.close(); // Close the scanner
+    }
+}
