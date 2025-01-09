@@ -1,0 +1,11 @@
+public class Solution_1_2_11 {
+    public static void main(String[] args) {
+        // Use nested for loops to create a right-angled triangle of eights
+        for (int i = 1; i <= 10; i++) { // Outer loop controls the number of rows
+            for (int j = 1; j <= i; j++) { // Inner loop controls the number of eights per row
+                System.out.print("8");
+            }
+            System.out.println(); // Move to the next line after printing each row
+        }
+    }
+}
