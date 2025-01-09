@@ -1,0 +1,13 @@
+public class Solution_1_2_5 {
+    public static void main(String[] args) {
+        // Declare the quote variable
+        String quote = "I will never work for pennies.";
+        // Initialize a counter variable
+        int counter = 0;
+        // Use a while loop to display the quote 100 times
+        while (counter < 100) {
+            System.out.println(quote);
+            counter++; // Increment the counter
+        }
+    }
+}
