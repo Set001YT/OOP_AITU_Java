@@ -1,0 +1,15 @@
+public class Solution_2_2_8 {
+    public static void main(String[] args) {
+        // Test with a large number
+        long result = cube(5); // 5^3 = 125
+        System.out.println(result); // Output should be 125
+
+        long largeResult = cube(10); // Test with a large number
+        System.out.println(largeResult); // Output should be 1000
+    }
+
+    // Method to calculate the cube of a number
+    public static long cube(long number) {
+        return number * number * number; // Multiply the number by itself three times
+    }
+}
