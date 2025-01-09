@@ -1,0 +1,19 @@
+public class Solution_2_1_3 {
+    public static int[] array = new int[]{-1, 2, 3, -4, -5};
+
+    public static void main(String[] args) {
+        // Loop through each element in the array
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0) { // Check if the element is even
+                array[i] = -array[i]; // Change the sign of the element
+            }
+        }
+
+        // Print the modified array
+        System.out.println(array[0]);
+        System.out.println(array[1]);
+        System.out.println(array[2]);
+        System.out.println(array[3]);
+        System.out.println(array[4]);
+    }
+}
