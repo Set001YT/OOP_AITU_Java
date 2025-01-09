@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Solution_1_2_2{
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the keyboard
+        Scanner scanner = new Scanner(System.in);
+        // Prompt the user to enter their name
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine(); // Read the name
+        // Prompt the user to enter their age
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt(); // Read the age
+        // Check the age and display the appropriate message
+        if (age >= 18 && age <= 28) {
+            System.out.println(name + ", come to the military registration and enlistment office");
+        }
+        scanner.close(); // Close the scanner
+    }
+}
