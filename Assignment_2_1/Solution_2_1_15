@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Solution_2_1_15 {
+    public static int[][] array = new int[3][3]; // 3x3 array
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read 9 numbers from the keyboard to fill the array
+        System.out.println("Enter 9 integers to fill the 3x3 array:");
+
+        // Fill the array with numbers from the keyboard
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                array[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Flip the array with respect to the main diagonal
+        // Transpose the array: Swap array[i][j] with array[j][i]
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i + 1; j < array[i].length; j++) {
+                // Swap the elements
+                int temp = array[i][j];
+                array[i][j] = array[j][i];
+                array[j][i] = temp;
+            }
+        }
+
+        // Display the flipped array
+        System.out.println("Array flipped with respect to the main diagonal:");
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
