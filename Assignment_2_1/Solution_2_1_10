@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Solution_2_1_10 {
+    public static int[][] multiArray;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Step 1: Read the number of rows (N) from the console
+        int N = scanner.nextInt();
+
+        // Step 2: Initialize the multiArray with N rows
+        multiArray = new int[N][];
+
+        // Step 3: Read N numbers and initialize each row with corresponding size
+        for (int i = 0; i < N; i++) {
+            int size = scanner.nextInt(); // Read the size of the current row
+            multiArray[i] = new int[size]; // Create a row with the given size
+        }
+
+        // Step 4: Output the structure of the array
+        for (int i = 0; i < multiArray.length; i++) {
+            for (int j = 0; j < multiArray[i].length; j++) {
+                System.out.print("[]");
+            }
+            System.out.println(); // Move to the next line after printing a row
+        }
+    }
+}
