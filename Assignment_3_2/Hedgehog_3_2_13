@@ -1,0 +1,22 @@
+public class Hedgehog_3_2_13 {
+
+    // Method to simulate the hedgehog eating the apple
+    public void eat(Apple apple) {
+        System.out.println("The apple has been eaten!");
+    }
+
+    public static void main(String[] args) {
+        // Create an object of the Apple class
+        Apple apple = new Apple();
+
+        // Create an object of the Hedgehog class
+        Hedgehog_3_2_13 hedgehog = new Hedgehog_3_2_13();
+
+        // Call the eat method on the hedgehog object, passing the apple object
+        hedgehog.eat(apple);
+    }
+
+    // Nested static class Apple
+    public static class Apple {
+    }
+}
