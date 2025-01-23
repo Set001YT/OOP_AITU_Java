@@ -1,0 +1,21 @@
+public class Building_3_2_5 {
+    private String type;
+
+    // Removed the constructor
+
+    // initialize method to set the type of the building
+    public void initialize(String type) {
+        this.type = type;
+    }
+
+    public static void main(String[] args) {
+        // Create an instance of the Building class without passing a type in the constructor
+        Building_3_2_5 building = new Building_3_2_5();
+
+        // Initialize the building type as "Restaurant"
+        building.initialize("Restaurant");
+
+        // Change the building type to "Barbershop"
+        building.initialize("Barbershop");
+    }
+}
