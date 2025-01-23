@@ -1,0 +1,16 @@
+public class Solution_3_1_9 {
+    public static void main(String[] args) throws Exception {
+        // You can create objects here to test the interfaces if needed
+    }
+
+    // CanMove interface with speed() method that takes no parameters and returns a Double
+    public interface CanMove {
+        Double speed();  // Method that returns a speed of type Double
+    }
+
+    // CanFly interface inherits from CanMove interface
+    public interface CanFly extends CanMove {
+        // speed() method in CanFly accepts one argument of type CanFly and returns a Double
+        Double speed(CanFly canFly);
+    }
+}
