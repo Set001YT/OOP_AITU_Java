@@ -1,0 +1,27 @@
+public class CarConcern_3_2_4 {
+    private final String manufacturer = "Lamborghini";
+    private final String model;
+    private final int year;
+    private final String color;
+
+    // Constructor with three parameters
+    public CarConcern_3_2_4(String model, int year, String color) {
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+
+    // Constructor with two parameters
+    public CarConcern_3_2_4(String model, int year) {
+        this.model = model;
+        this.year = year;
+        this.color = "Orange"; // Default value for color
+    }
+
+    // Constructor with one parameter
+    public CarConcern_3_2_4(String model) {
+        this.model = model;
+        this.year = 4321; // Default value for year
+        this.color = "Orange"; // Default value for color
+    }
+}
