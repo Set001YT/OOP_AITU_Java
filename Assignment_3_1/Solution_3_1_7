@@ -1,0 +1,25 @@
+public class Solution_3_1_7 {
+    public static void main(String[] args) {
+        // Corrected: Accessing the static variable HOBBY directly through the Dream interface
+        System.out.println(Dream.HOBBY.toString());
+    }
+
+    interface Desire {
+    }
+
+    interface Dream {
+        // Fixed: Made HOBBY public, static, and final (implicitly by default in interfaces)
+        Hobby HOBBY = new Hobby();
+    }
+
+    // Fixed: Hobby class should be static and implements the Dream interface
+    static class Hobby implements Dream {  // Implementing Dream instead of extending it
+        static int INDEX = 1;
+
+        @Override
+        public String toString() {
+            INDEX++;  // Incrementing INDEX
+            return "" + INDEX;
+        }
+    }
+}
