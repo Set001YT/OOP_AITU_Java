@@ -1,0 +1,77 @@
+public class Solution_3_1_11 {
+    public static void main(String[] args) {
+        // Example usage
+        Cat cat = new Cat();
+        Dog dog = new Dog();
+        Mouse mouse = new Mouse();
+
+        cat.move();  // Cat moves
+        dog.move();  // Dog moves
+        mouse.move();  // Mouse moves
+
+        cat.eat();  // Cat eats
+        dog.eat();  // Dog eats
+
+        mouse.beEaten();  // Mouse can be eaten
+        cat.beEaten();  // Cat can be eaten
+    }
+
+    // Movable interface: Animals that can move
+    public interface Movable {
+        void move();
+    }
+
+    // Edible interface: Animals that can be eaten
+    public interface Edible {
+        void beEaten();
+    }
+
+    // Eat interface: Animals that can eat others
+    public interface Eat {
+        void eat();
+    }
+
+    // Cat class: Can move, eat, and be eaten
+    public static class Cat implements Movable, Eat, Edible {
+        @Override
+        public void move() {
+            System.out.println("Cat is moving.");
+        }
+
+        @Override
+        public void eat() {
+            System.out.println("Cat is eating someone.");
+        }
+
+        @Override
+        public void beEaten() {
+            System.out.println("Cat can be eaten.");
+        }
+    }
+
+    // Dog class: Can move and eat someone
+    public static class Dog implements Movable, Eat {
+        @Override
+        public void move() {
+            System.out.println("Dog is moving.");
+        }
+
+        @Override
+        public void eat() {
+            System.out.println("Dog is eating someone.");
+        }
+    }
+
+    // Mouse class: Can move and be eaten
+    public static class Mouse implements Movable, Edible {
+        @Override
+        public void move() {
+            System.out.println("Mouse is moving.");
+        }
+
+        @Override
+        public void beEaten() {
+            System.out.println("Mouse can be eaten.");
+        }
+    }
+}
