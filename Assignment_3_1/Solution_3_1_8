@@ -1,0 +1,15 @@
+public class Solution_3_1_8 {
+    public static void main(String[] args) throws Exception {
+        // You can create objects or call methods here to test your interfaces if needed.
+    }
+
+    // Person interface with the isAlive() method
+    public interface Person {
+        boolean isAlive();  // This method returns a boolean to check if the person is alive or not
+    }
+
+    // Presentable interface inheriting from the Person interface
+    public interface Presentable extends Person {
+        // Additional methods can be added here in the future if needed
+    }
+}
