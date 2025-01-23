@@ -1,0 +1,26 @@
+public class Skyscraper_3_2_2 {
+    public static final String SKYSCRAPER_WAS_BUILD = "Skyscraper is built.";
+    public static final String SKYSCRAPER_WAS_BUILD_FLOORS_COUNT = "Skyscraper is built. The number of floors - ";
+    public static final String SKYSCRAPER_WAS_BUILD_DEVELOPER = "Skyscraper is built. Developer - ";
+
+    // Constructor without parameters
+    public Skyscraper_3_2_2() {
+        System.out.println(SKYSCRAPER_WAS_BUILD);
+    }
+
+    // Constructor with an int parameter for number of floors
+    public Skyscraper_3_2_2(int floors) {
+        System.out.println(SKYSCRAPER_WAS_BUILD_FLOORS_COUNT + floors);
+    }
+
+    // Constructor with a String parameter for the developer name
+    public Skyscraper_3_2_2(String developer) {
+        System.out.println(SKYSCRAPER_WAS_BUILD_DEVELOPER + developer);
+    }
+
+    public static void main(String[] args) {
+        Skyscraper_3_2_2 skyscraper = new Skyscraper_3_2_2(); // Default constructor
+        Skyscraper_3_2_2 skyscraperTower = new Skyscraper_3_2_2(50); // Constructor with floors
+        Skyscraper_3_2_2 skyscraperSkyline = new Skyscraper_3_2_2("JavaRushDevelopment"); // Constructor with developer
+    }
+}
