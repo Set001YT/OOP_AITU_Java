@@ -1,0 +1,64 @@
+public class Solution_3_1_3 {
+    public static void main(String[] args) {
+    }
+
+    public interface CanFly {
+        void fly();
+    }
+
+    public interface CanRun {
+        void run();
+    }
+
+    public interface CanSwim {
+        void swim();
+    }
+
+    public class Human implements CanRun, CanSwim {
+        @Override
+        public void run() {
+            // Human's run behavior
+        }
+
+        @Override
+        public void swim() {
+            // Human's swim behavior
+        }
+    }
+
+    public class Duck implements CanFly, CanRun, CanSwim {
+        @Override
+        public void fly() {
+            // Duck's fly behavior
+        }
+
+        @Override
+        public void run() {
+            // Duck's run behavior
+        }
+
+        @Override
+        public void swim() {
+            // Duck's swim behavior
+        }
+    }
+
+    public class Penguin implements CanRun, CanSwim {
+        @Override
+        public void run() {
+            // Penguin's run behavior
+        }
+
+        @Override
+        public void swim() {
+            // Penguin's swim behavior
+        }
+    }
+
+    public class Airplane implements CanFly {
+        @Override
+        public void fly() {
+            // Airplane's fly behavior
+        }
+    }
+}
