@@ -1,0 +1,41 @@
+public class Solution_3_1_12 {
+    public static void main(String[] args) {
+        System.out.println(new Today(WeatherType.CLOUDY));   // Output: Today it will be Cloudy
+        System.out.println(new Today(WeatherType.FOGGY));    // Output: Today it will be Foggy
+        System.out.println(new Today(WeatherType.FREEZING)); // Output: Today it will be Freezing
+    }
+
+    // Today class implements Weather interface
+    static class Today implements Weather {
+        private String type;
+
+        // Constructor that accepts a weather type
+        Today(String type) {
+            this.type = type;
+        }
+
+        // Implementation of getWeatherType method from Weather interface
+        @Override
+        public String getWeatherType() {
+            return this.type;
+        }
+
+        // Override toString() to format the output as required
+        @Override
+        public String toString() {
+            return String.format("Today it will be %s", this.getWeatherType());
+        }
+    }
+
+    // Weather interface declaring the getWeatherType method
+    public interface Weather {
+        String getWeatherType();
+    }
+
+    // WeatherType interface providing constants for weather types
+    public interface WeatherType {
+        String CLOUDY = "Cloudy";
+        String FOGGY = "Foggy";
+        String FREEZING = "Freezing";
+    }
+}
