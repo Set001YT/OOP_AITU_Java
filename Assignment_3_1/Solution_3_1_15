@@ -1,0 +1,24 @@
+public class Solution_3_1_15 {
+    public static void main(String[] args) throws Exception {
+    }
+
+    interface Selectable {
+        void onSelect();
+    }
+
+    interface Updatable extends Selectable {
+        void refresh();
+    }
+
+    class Screen implements Updatable {
+        @Override
+        public void onSelect() {
+            System.out.println("Selectable action performed.");
+        }
+
+        @Override
+        public void refresh() {
+            System.out.println("Screen refreshed.");
+        }
+    }
+}
