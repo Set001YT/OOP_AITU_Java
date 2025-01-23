@@ -1,0 +1,17 @@
+public class Market_3_2_12 {
+    private static boolean hasEggs = true; // Static field, should not be used in the method.
+
+    public static void main(String[] args) {
+        boolean hasEggs = false; // Local variable in main, passed to the method
+        makePurchases(hasEggs); // Pass the local variable to the method
+    }
+
+    public static void makePurchases(boolean hasEggs) {
+        if (hasEggs) { // Use the passed argument here instead of the static field
+            System.out.println("Bought 10 Batons");
+        }
+        else {
+            System.out.println("Bought 1 loaf");
+        }
+    }
+}
