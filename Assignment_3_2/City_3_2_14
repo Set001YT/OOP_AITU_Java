@@ -1,0 +1,20 @@
+public class City_3_2_14 {
+    private String name;
+    private int temperature;
+
+    // Constructor to initialize the city name and temperature
+    public City_3_2_14(String name, int temperature) {
+        this.name = name;
+        this.temperature = temperature;
+    }
+
+    // Getter for the city name
+    public String getName() {
+        return name;
+    }
+
+    // Getter for the city temperature
+    public int getTemperature() {
+        return temperature;
+    }
+}
