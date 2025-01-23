@@ -1,0 +1,38 @@
+public class Iphone_3_2_9 {
+    private String model;
+    private String color;
+    private int price;
+
+    public Iphone_3_2_9(String model, String color, int price) {
+        this.model = model;
+        this.color = color;
+        this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // Check if the object is the same reference
+        if (this == obj) {
+            return true;
+        }
+
+        // Check if the object is null or not an instance of Iphone
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        // Cast the object to Iphone
+        Iphone_3_2_9 otherIphone = (Iphone_3_2_9) obj;
+
+        // Compare all fields
+        return model.equals(otherIphone.model) &&
+                color.equals(otherIphone.color) &&
+                price == otherIphone.price;
+    }
+
+    public static void main(String[] args) {
+        Iphone_3_2_9 iphone1 = new Iphone_3_2_9("X", "Black", 999);
+        Iphone_3_2_9 iphone2 = new Iphone_3_2_9("X", "Black", 999);
+        System.out.println(iphone1.equals(iphone2)); // This should now print true
+    }
+}
