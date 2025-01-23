@@ -1,0 +1,24 @@
+public class Skyscraper_3_2_3 {
+    private int floorsCount;
+    private String developer;
+
+    // Constructor with no parameters
+    public Skyscraper_3_2_3() {
+        this.floorsCount = 5; // Default value for floorsCount
+        this.developer = "JavaRushDevelopment"; // Default value for developer
+    }
+
+    // Constructor with parameters
+    public Skyscraper_3_2_3(int floorsCount, String developer) {
+        this.floorsCount = floorsCount;
+        this.developer = developer;
+    }
+
+    public static void main(String[] args) {
+        // Using the constructor without parameters
+        Skyscraper_3_2_3 skyscraper = new Skyscraper_3_2_3();
+
+        // Using the constructor with parameters
+        Skyscraper_3_2_3 skyscraperUnknown = new Skyscraper_3_2_3(50, "Unknown");
+    }
+}
