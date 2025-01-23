@@ -1,0 +1,10 @@
+public class Solution_3_2_8 {
+    public static void main(String[] args) {
+        String s1 = "JavaENU"; // Direct assignment to string literal
+        String s2 = "JavaENU"; // Direct assignment to string literal
+        String s3 = "JavaENU"; // Direct assignment to string literal
+
+        System.out.println(s1 == s3); // This will print true because s1 and s3 refer to the same object
+        System.out.println(s2.equals(s3)); // This will print true because s2 and s3 have the same content
+    }
+}
