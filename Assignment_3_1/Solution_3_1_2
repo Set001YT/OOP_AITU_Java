@@ -1,0 +1,64 @@
+public class Solution_3_1_2 {
+    public static void main(String[] args) {
+    }
+
+    public interface CanFly {
+        void fly();
+    }
+
+    public interface CanMove {
+        void move();
+    }
+
+    public interface CanEat {
+        void eat();
+    }
+
+    public class Dog implements CanMove, CanEat {
+        @Override
+        public void move() {
+            // Dog's move behavior
+        }
+
+        @Override
+        public void eat() {
+            // Dog's eat behavior
+        }
+    }
+
+    public class Duck implements CanMove, CanFly, CanEat {
+        @Override
+        public void move() {
+            // Duck's move behavior
+        }
+
+        @Override
+        public void fly() {
+            // Duck's fly behavior
+        }
+
+        @Override
+        public void eat() {
+            // Duck's eat behavior
+        }
+    }
+
+    public class Car implements CanMove {
+        @Override
+        public void move() {
+            // Car's move behavior
+        }
+    }
+
+    public class Airplane implements CanMove, CanFly {
+        @Override
+        public void move() {
+            // Airplane's move behavior
+        }
+
+        @Override
+        public void fly() {
+            // Airplane's fly behavior
+        }
+    }
+}
