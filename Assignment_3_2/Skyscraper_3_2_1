@@ -1,0 +1,12 @@
+public class Skyscraper_3_2_1 {
+
+    // Constructor
+    public Skyscraper_3_2_1() {
+        System.out.println("Skyscraper built.");
+    }
+
+    public static void main(String[] args) {
+        // Create an object of the Skyscraper class
+        new Skyscraper_3_2_1();
+    }
+}
