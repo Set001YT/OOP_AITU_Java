@@ -1,0 +1,57 @@
+public class Solution_3_1_10 {
+    public static void main(String[] args) throws Exception {
+        // Example usage
+    }
+
+    // Person interface (all people have to start to work)
+    interface Person {
+        void use(Person person);
+        void startToWork();
+    }
+
+    // HasManagementPotential interface (a Boss can inspire others)
+    interface HasManagementPotential {
+        boolean inspiresOthersToWork();
+    }
+
+    // Secretary interface (inherits from Person)
+    interface Secretary extends Person {
+        // No additional methods for Secretary in this case
+    }
+
+    // Boss interface (inherits from Person and HasManagementPotential)
+    interface Boss extends Person, HasManagementPotential {
+        // No additional methods for Boss in this case
+    }
+
+    // Manager class implements Boss
+    class Manager implements Boss {
+        @Override
+        public void use(Person person) {
+            person.startToWork();  // Manager gives instructions to start work
+        }
+
+        @Override
+        public void startToWork() {
+            System.out.println("Manager is starting to work!");
+        }
+
+        @Override
+        public boolean inspiresOthersToWork() {
+            return true;  // Managers inspire others to work
+        }
+    }
+
+    // Subordinate class implements Secretary
+    class Subordinate implements Secretary {
+        @Override
+        public void use(Person person) {
+            // Subordinate might be instructed by others to start work
+        }
+
+        @Override
+        public void startToWork() {
+            System.out.println("Subordinate is starting to work!");
+        }
+    }
+}
