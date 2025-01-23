@@ -1,0 +1,12 @@
+public class Solution_3_1_1 {
+    public static void main(String[] args) {
+        // You can implement the CanFly interface in a class here and test it
+    }
+
+    // Define the CanFly interface
+    public interface CanFly {
+        void fly(); // Method to represent flying
+
+        void takeOff(); // Method to represent taking off
+    }
+}
