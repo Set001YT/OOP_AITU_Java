@@ -1,0 +1,30 @@
+public class Programmer_3_2_7 {
+    private int salary = 1000;  // Initial salary
+
+    // Getter for salary
+    public int getSalary() {
+        return salary;
+    }
+
+    // Setter for salary, but only if the new salary is greater than the current one
+    public void setSalary(int salary) {
+        if (salary > this.salary) {
+            this.salary = salary;
+        }
+    }
+
+    public static void main(String[] args) {
+        Programmer_3_2_7 programmer = new Programmer_3_2_7();
+
+        // Initial salary
+        System.out.println("Initial salary: " + programmer.getSalary());
+
+        // Try to decrease salary (should not work)
+        programmer.setSalary(900);
+        System.out.println("Salary after attempting decrease: " + programmer.getSalary());
+
+        // Try to increase salary (should work)
+        programmer.setSalary(1200);
+        System.out.println("Salary after increase: " + programmer.getSalary());
+    }
+}
