@@ -1,0 +1,34 @@
+public class Bugatti_3_2_6 {
+    private String color = "BLACK";  // Default color
+    private int year = 2020;         // Default year
+    private String body = "Coupe";   // Default body type
+
+    // Default constructor
+    public Bugatti_3_2_6() {
+        // Initializes with default values (optional as they are already set above)
+    }
+
+    // Getter for body
+    public String getBody() {
+        return body;
+    }
+
+    // Setter for body
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    // Main method to test the functionality
+    public static void main(String[] args) {
+        Bugatti_3_2_6 bugatti = new Bugatti_3_2_6();
+
+        // Print the current body type
+        System.out.println("Current body: " + bugatti.getBody());
+
+        // Change the body to "Convertible"
+        bugatti.setBody("Convertible");
+
+        // Print the updated body type
+        System.out.println("Updated body: " + bugatti.getBody());
+    }
+}
