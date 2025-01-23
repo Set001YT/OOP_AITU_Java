@@ -1,0 +1,30 @@
+public class Car_3_2_10 {
+    private String model;
+    private int year;
+
+    public Car_3_2_10(String model, int year) {
+        this.model = model;
+        this.year = year;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * model.hashCode() + year;
+    }
+
+    public static void main(String[] args) {
+        Car_3_2_10 lamborghini = new Car_3_2_10("Lamborghini", 2020);
+        Car_3_2_10 lamborghini1 = new Car_3_2_10("Lamborghini", 2020);
+        Car_3_2_10 ferrari = new Car_3_2_10("Ferrari", 2020);
+        Car_3_2_10 ferrari1 = new Car_3_2_10("Ferrari", 2020);
+        Car_3_2_10 bugatti = new Car_3_2_10("Bugatti", 2020);
+        Car_3_2_10 bugatti1 = new Car_3_2_10("Bugatti", 2020);
+
+        System.out.println(ferrari.hashCode() == ferrari.hashCode()); // true
+        System.out.println(lamborghini.hashCode() == lamborghini1.hashCode()); // true
+        System.out.println(ferrari.hashCode() == ferrari1.hashCode()); // true
+        System.out.println(bugatti.hashCode() == bugatti1.hashCode()); // true
+        System.out.println(bugatti.hashCode() == lamborghini.hashCode()); // false
+        System.out.println(lamborghini.hashCode() == ferrari.hashCode()); // false
+    }
+}
