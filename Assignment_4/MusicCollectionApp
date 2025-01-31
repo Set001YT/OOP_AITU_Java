@@ -1,0 +1,217 @@
+import java.util.*;
+
+// MusicalWork Class
+class MusicalWork {
+    private String name;
+    private int duration;
+    private MusicalMedia media;
+
+    public MusicalWork(String name, int duration) {
+        this.name = name;
+        this.duration = duration;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public MusicalMedia getMedia() {
+        return media;
+    }
+
+    public void setMedia(MusicalMedia media) {
+        this.media = media;
+    }
+
+    @Override
+    public String toString() {
+        return "Musical Work: " + name + ", Duration: " + duration + " seconds";
+    }
+}
+
+// MusicalMedia Class
+class MusicalMedia {
+    private String authorOrGroup;
+    private String genre;
+    private int year;
+    private List<MusicalWork> musicalWorks;
+    private Collection collection;
+
+    public MusicalMedia(String authorOrGroup, String genre, int year) {
+        this.authorOrGroup = authorOrGroup;
+        this.genre = genre;
+        this.year = year;
+        this.musicalWorks = new ArrayList<>();
+    }
+
+    public String getAuthorOrGroup() {
+        return authorOrGroup;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public List<MusicalWork> getMusicalWorks() {
+        return musicalWorks;
+    }
+
+    public Collection getCollection() {
+        return collection;
+    }
+
+    public void setCollection(Collection collection) {
+        this.collection = collection;
+    }
+
+    public void addMusicalWork(MusicalWork work) {
+        musicalWorks.add(work);
+        work.setMedia(this);
+    }
+
+    public void removeMusicalWork(MusicalWork work) {
+        musicalWorks.remove(work);
+        work.setMedia(null);
+    }
+
+    public int getTotalDuration() {
+        return musicalWorks.stream().mapToInt(MusicalWork::getDuration).sum();
+    }
+
+    @Override
+    public String toString() {
+        return "Musical Media: Author/Group=" + authorOrGroup + ", Genre=" + genre + ", Year=" + year;
+    }
+}
+
+// Collection Class
+class Collection {
+    private String name;
+    private String ownerName;
+    private List<MusicalMedia> mediaList;
+
+    public Collection(String name, String ownerName) {
+        this.name = name;
+        this.ownerName = ownerName;
+        this.mediaList = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public List<MusicalMedia> getMediaList() {
+        return mediaList;
+    }
+
+    public void addMedia(MusicalMedia media) {
+        mediaList.add(media);
+        media.setCollection(this);
+    }
+
+    public void removeMedia(MusicalMedia media) {
+        mediaList.remove(media);
+        media.setCollection(null);
+    }
+
+    public MusicalWork searchByTitle(String title) {
+        for (MusicalMedia media : mediaList) {
+            for (MusicalWork work : media.getMusicalWorks()) {
+                if (work.getName().equalsIgnoreCase(title)) {
+                    return work;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Collection: " + name + ", Owner: " + ownerName;
+    }
+}
+
+// Main Class
+public class MusicCollectionApp {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Collection myCollection = new Collection("My Music Collection", "John Doe");
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add musical work");
+            System.out.println("2. Show musical works");
+            System.out.println("3. Search for a musical work");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter album author/group: ");
+                    String author = scanner.nextLine();
+                    System.out.print("Enter album genre: ");
+                    String genre = scanner.nextLine();
+                    System.out.print("Enter album year: ");
+                    int year = scanner.nextInt();
+                    scanner.nextLine();
+
+                    MusicalMedia album = new MusicalMedia(author, genre, year);
+                    myCollection.addMedia(album);
+
+                    System.out.print("Enter musical work name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter duration in seconds: ");
+                    int duration = scanner.nextInt();
+                    scanner.nextLine();
+
+                    MusicalWork work = new MusicalWork(name, duration);
+                    album.addMusicalWork(work);
+                    System.out.println("Musical work added successfully.");
+                    break;
+
+                case 2:
+                    for (MusicalMedia media : myCollection.getMediaList()) {
+                        System.out.println(media);
+                        for (MusicalWork mw : media.getMusicalWorks()) {
+                            System.out.println("  " + mw);
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter the title of the musical work: ");
+                    String title = scanner.nextLine();
+                    MusicalWork foundWork = myCollection.searchByTitle(title);
+                    if (foundWork != null) {
+                        System.out.println("Found work: " + foundWork);
+                        System.out.println("Contained in media: " + foundWork.getMedia().getAuthorOrGroup());
+                    } else {
+                        System.out.println("Musical work not found.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
