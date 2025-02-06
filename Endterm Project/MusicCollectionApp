@@ -1,0 +1,148 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.sql.*;
+import java.util.*;
+
+// Database Connection Manager
+class DatabaseManager {
+    private static final String URL = "jdbc:mysql://localhost:3306/music_collection";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+}
+
+// MusicalWork Class
+class MusicalWork {
+    private String name;
+    private int duration;
+    private int mediaId;
+
+    public MusicalWork(String name, int duration, int mediaId) {
+        this.name = name;
+        this.duration = duration;
+        this.mediaId = mediaId;
+    }
+}
+
+// MusicalMedia Class
+class MusicalMedia {
+    private String authorOrGroup;
+    private String genre;
+    private int year;
+
+    public MusicalMedia(String authorOrGroup, String genre, int year) {
+        this.authorOrGroup = authorOrGroup;
+        this.genre = genre;
+        this.year = year;
+    }
+}
+
+// GUI Class
+public class MusicCollectionApp extends JFrame {
+    private JTable table;
+    private DefaultTableModel tableModel;
+    private JTextField searchField;
+
+    public MusicCollectionApp() {
+        setTitle("Music Collection");
+        setSize(600, 400);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        JPanel panel = new JPanel();
+        JButton addButton = new JButton("Add Musical Work");
+        JButton showButton = new JButton("Show Collection");
+        JButton searchButton = new JButton("Search Work");
+        searchField = new JTextField(15);
+
+        addButton.addActionListener(e -> addMusicalWork());
+        showButton.addActionListener(e -> showCollection());
+        searchButton.addActionListener(e -> searchMusicalWork());
+
+        panel.add(addButton);
+        panel.add(showButton);
+        panel.add(searchField);
+        panel.add(searchButton);
+
+        add(panel, BorderLayout.NORTH);
+
+        tableModel = new DefaultTableModel(new String[]{"Album Author/Group", "Genre", "Year", "Track Name", "Duration"}, 0);
+        table = new JTable(tableModel);
+        add(new JScrollPane(table), BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    private void addMusicalWork() {
+        String author = JOptionPane.showInputDialog("Enter album author/group:");
+        String genre = JOptionPane.showInputDialog("Enter album genre:");
+        int year = Integer.parseInt(JOptionPane.showInputDialog("Enter album year:"));
+
+        String trackName = JOptionPane.showInputDialog("Enter track name:");
+        int duration = Integer.parseInt(JOptionPane.showInputDialog("Enter duration in seconds:"));
+
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String insertMediaSQL = "INSERT INTO musical_media (author_or_group, genre, year) VALUES (?, ?, ?)";
+            try (PreparedStatement mediaStmt = conn.prepareStatement(insertMediaSQL, Statement.RETURN_GENERATED_KEYS)) {
+                mediaStmt.setString(1, author);
+                mediaStmt.setString(2, genre);
+                mediaStmt.setInt(3, year);
+                mediaStmt.executeUpdate();
+
+                ResultSet generatedKeys = mediaStmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int mediaId = generatedKeys.getInt(1);
+
+                    String insertWorkSQL = "INSERT INTO musical_work (name, duration, media_id) VALUES (?, ?, ?)";
+                    try (PreparedStatement workStmt = conn.prepareStatement(insertWorkSQL)) {
+                        workStmt.setString(1, trackName);
+                        workStmt.setInt(2, duration);
+                        workStmt.setInt(3, mediaId);
+                        workStmt.executeUpdate();
+
+                        JOptionPane.showMessageDialog(this, "Musical work added successfully.");
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
+        }
+    }
+
+    private void showCollection() {
+        tableModel.setRowCount(0);
+        try (Connection conn = DatabaseManager.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT m.author_or_group, m.genre, m.year, w.name, w.duration FROM musical_media m JOIN musical_work w ON m.id = w.media_id")) {
+            while (rs.next()) {
+                tableModel.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5)});
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
+        }
+    }
+
+    private void searchMusicalWork() {
+        String title = searchField.getText().trim();
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT m.author_or_group FROM musical_media m JOIN musical_work w ON m.id = w.media_id WHERE w.name = ?")) {
+            stmt.setString(1, title);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Found: " + title + "\nContained in: " + rs.getString(1));
+            } else {
+                JOptionPane.showMessageDialog(this, "Musical work not found.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        new MusicCollectionApp();
+    }
+}
