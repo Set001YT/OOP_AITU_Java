@@ -1,0 +1,68 @@
+package EndtermProject;
+
+import javax.swing.JOptionPane;
+
+// MusicCollectionApp.java (управление логикой)
+public class MusicCollectionApp2 {
+    private Collection myCollection;
+    private DatabaseManager dbManager;
+    private MusicCollectionGUI gui;
+
+    public MusicCollectionApp2() {
+        myCollection = new Collection("My Music Collection", "John Doe");
+        dbManager = new DatabaseManager();
+        gui = new MusicCollectionGUI(this);
+    }
+
+    public void addMusicalWork() {
+        String author = JOptionPane.showInputDialog("Enter album author/group:");
+        String genre = JOptionPane.showInputDialog("Enter album genre:");
+        int year = Integer.parseInt(JOptionPane.showInputDialog("Enter album year:"));
+
+        MusicalMedia album = new MusicalMedia(author, genre, year);
+        myCollection.addMedia(album);
+
+        String name = JOptionPane.showInputDialog("Enter track name:");
+        int duration = Integer.parseInt(JOptionPane.showInputDialog("Enter duration in seconds:"));
+
+        MusicalWork work = new MusicalWork(name, duration);
+        album.addMusicalWork(work);
+
+        dbManager.addMusicalWorkToDB(name, duration, author, genre, year);
+        JOptionPane.showMessageDialog(null, "Track added successfully.");
+    }
+
+    public void showCollection() {
+        gui.getTableModel().setRowCount(0);
+        for (MusicalMedia media : myCollection.getMediaList()) {
+            for (MusicalWork work : media.getMusicalWorks()) {
+                gui.getTableModel().addRow(new Object[]{media.getAuthorOrGroup(), media.getGenre(), media.getYear(), work.getName(), work.getDuration()});
+            }
+        }
+    }
+
+    public void searchMusicalWork() {
+        String title = JOptionPane.showInputDialog("Enter track name to search:");
+        MusicalWork foundWork = myCollection.searchByTitle(title);
+        if (foundWork != null) {
+            JOptionPane.showMessageDialog(null, "Found: " + foundWork.getName() + "\nContained in: " + foundWork.getMedia().getAuthorOrGroup());
+        } else {
+            JOptionPane.showMessageDialog(null, "Track not found.");
+        }
+    }
+
+    public void deleteMusicalWork() {
+        String title = JOptionPane.showInputDialog("Enter track name to delete:");
+        if (title != null && !title.trim().isEmpty()) {
+            dbManager.deleteMusicalWorkFromDB(title);
+            JOptionPane.showMessageDialog(null, "Track deleted successfully.");
+            showCollection();
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid track name.");
+        }
+    }
+
+    public static void main(String[] args) {
+        new MusicCollectionApp2();
+    }
+}
