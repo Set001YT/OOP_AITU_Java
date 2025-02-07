@@ -1,0 +1,50 @@
+package EndtermProject;
+
+//GUI-интерфейс программы
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.*;
+
+public class MusicCollectionGUI extends JFrame {
+    private JTable table;
+    private DefaultTableModel tableModel;
+    private JButton addButton, showButton, searchButton, deleteButton;
+    private MusicCollectionApp2 app;
+
+    public MusicCollectionGUI(MusicCollectionApp2 app) {
+        this.app = app;
+        setTitle("Music Collection");
+        setSize(800, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        JPanel panel = new JPanel();
+        addButton = new JButton("Add Track");
+        showButton = new JButton("Show Collection");
+        searchButton = new JButton("Search Track");
+        deleteButton = new JButton("Delete Track");
+
+        addButton.addActionListener(e -> app.addMusicalWork());
+        showButton.addActionListener(e -> app.showCollection());
+        searchButton.addActionListener(e -> app.searchMusicalWork());
+        deleteButton.addActionListener(e -> app.deleteMusicalWork());
+
+        panel.add(addButton);
+        panel.add(showButton);
+        panel.add(searchButton);
+        panel.add(deleteButton);
+
+        add(panel, BorderLayout.NORTH);
+
+        tableModel = new DefaultTableModel(new String[]{"Album Author/Group", "Genre", "Year", "Track Name", "Duration"}, 0);
+        table = new JTable(tableModel);
+        add(new JScrollPane(table), BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    public DefaultTableModel getTableModel() {
+        return tableModel;
+    }
+}
