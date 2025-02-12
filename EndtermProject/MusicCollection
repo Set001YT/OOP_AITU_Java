@@ -3,98 +3,64 @@ package EndtermProject;
 import java.util.ArrayList;
 import java.util.List;
 
-// Класс музыкального произведения
+class Collection {
+    private int id;
+    private String name;
+    private List<MusicalMedia> albums;
+
+    public Collection(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.albums = new ArrayList<>();
+    }
+
+    public int getId() { return id; }
+    public String getName() { return name; }
+    public List<MusicalMedia> getAlbums() { return albums; }
+
+    public void addAlbum(MusicalMedia album) {
+        albums.add(album);
+    }
+}
+
+class MusicalMedia {
+    private int id;
+    private String name;
+    private int collectionId;
+    private List<MusicalWork> tracks;
+
+    public MusicalMedia(int id, String name, int collectionId) {
+        this.id = id;
+        this.name = name;
+        this.collectionId = collectionId;
+        this.tracks = new ArrayList<>();
+    }
+
+    public int getId() { return id; }
+    public String getName() { return name; }
+    public int getCollectionId() { return collectionId; }
+    public List<MusicalWork> getTracks() { return tracks; }
+
+    public void addTrack(MusicalWork track) {
+        tracks.add(track);
+    }
+}
+
 class MusicalWork {
+    private int id;
     private String name;
     private int duration;
-    private MusicalMedia media;
+    private int albumId;
 
-    public MusicalWork(String name, int duration) {
+    public MusicalWork(int id, String name, int duration, int albumId) {
+        this.id = id;
         this.name = name;
         this.duration = duration;
+        this.albumId = albumId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public MusicalMedia getMedia() {
-        return media;
-    }
-
-    public void setMedia(MusicalMedia media) {
-        this.media = media;
-    }
-}
-
-// Класс музыкального носителя (альбома)
-class MusicalMedia {
-    private String authorOrGroup;
-    private String genre;
-    private int year;
-    private List<MusicalWork> musicalWorks;
-
-    public MusicalMedia(String authorOrGroup, String genre, int year) {
-        this.authorOrGroup = authorOrGroup;
-        this.genre = genre;
-        this.year = year;
-        this.musicalWorks = new ArrayList<>();
-    }
-
-    public String getAuthorOrGroup() {
-        return authorOrGroup;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public List<MusicalWork> getMusicalWorks() {
-        return musicalWorks;
-    }
-
-    public void addMusicalWork(MusicalWork work) {
-        musicalWorks.add(work);
-        work.setMedia(this);
-    }
-}
-
-// Класс коллекции музыкальных альбомов
-class Collection {
-    private String name;
-    private String ownerName;
-    private List<MusicalMedia> mediaList;
-
-    public Collection(String name, String ownerName) {
-        this.name = name;
-        this.ownerName = ownerName;
-        this.mediaList = new ArrayList<>();
-    }
-
-    public List<MusicalMedia> getMediaList() {
-        return mediaList;
-    }
-
-    public void addMedia(MusicalMedia media) {
-        mediaList.add(media);
-    }
-
-    public MusicalWork searchByTitle(String title) {
-        for (MusicalMedia media : mediaList) {
-            for (MusicalWork work : media.getMusicalWorks()) {
-                if (work.getName().equalsIgnoreCase(title)) {
-                    return work;
-                }
-            }
-        }
-        return null;
-    }
+    public int getId() { return id; }
+    public String getName() { return name; }
+    public int getDuration() { return duration; }
+    public int getAlbumId() { return albumId; }
 }
