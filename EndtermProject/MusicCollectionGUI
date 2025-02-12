@@ -4,47 +4,125 @@ package EndtermProject;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MusicCollectionGUI extends JFrame {
-    private JTable table;
-    private DefaultTableModel tableModel;
-    private JButton addButton, showButton, searchButton, deleteButton;
+public class MusicCollectionGUI {
+    private JFrame frame;
+    private JTable collectionTable, albumTable, trackTable;
+    private DefaultTableModel collectionModel, albumModel, trackModel;
     private MusicCollectionApp2 app;
 
     public MusicCollectionGUI(MusicCollectionApp2 app) {
         this.app = app;
-        setTitle("Music Collection");
-        setSize(800, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        frame = new JFrame("Music Collection Manager");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel();
-        addButton = new JButton("Add Track");
-        showButton = new JButton("Show Collection");
-        searchButton = new JButton("Search Track");
-        deleteButton = new JButton("Delete Track");
+        JPanel tablePanel = new JPanel(new GridLayout(3, 1));
 
-        addButton.addActionListener(e -> app.addMusicalWork());
-        showButton.addActionListener(e -> app.showCollection());
-        searchButton.addActionListener(e -> app.searchMusicalWork());
-        deleteButton.addActionListener(e -> app.deleteMusicalWork());
+        collectionModel = new DefaultTableModel(new String[]{"ID", "Name"}, 0);
+        collectionTable = new JTable(collectionModel);
+        tablePanel.add(new JScrollPane(collectionTable));
 
-        panel.add(addButton);
-        panel.add(showButton);
-        panel.add(searchButton);
-        panel.add(deleteButton);
+        albumModel = new DefaultTableModel(new String[]{"ID", "Name", "Artist", "Genre", "Year", "Collection ID"}, 0);
+        albumTable = new JTable(albumModel);
+        tablePanel.add(new JScrollPane(albumTable));
 
-        add(panel, BorderLayout.NORTH);
+        trackModel = new DefaultTableModel(new String[]{"ID", "Name", "Duration", "Author","Album ID"}, 0);
+        trackTable = new JTable(trackModel);
+        tablePanel.add(new JScrollPane(trackTable));
 
-        tableModel = new DefaultTableModel(new String[]{"Album Author/Group", "Genre", "Year", "Track Name", "Duration"}, 0);
-        table = new JTable(tableModel);
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        frame.add(tablePanel, BorderLayout.CENTER);
 
-        setVisible(true);
+        JPanel buttonPanel = new JPanel(new GridLayout(3, 4));
+
+        JButton addCollectionBtn = new JButton("Add Collection");
+        addCollectionBtn.addActionListener(e -> app.addCollection());
+        buttonPanel.add(addCollectionBtn);
+
+        JButton updateCollectionBtn = new JButton("Update Collection");
+        updateCollectionBtn.addActionListener(e -> app.updateCollection());
+        buttonPanel.add(updateCollectionBtn);
+
+        JButton deleteCollectionBtn = new JButton("Delete Collection");
+        deleteCollectionBtn.addActionListener(e -> app.deleteCollection());
+        buttonPanel.add(deleteCollectionBtn);
+
+        JButton showCollectionsBtn = new JButton("Show Collections");
+        showCollectionsBtn.addActionListener(e -> app.showCollections());
+        buttonPanel.add(showCollectionsBtn);
+
+        JButton addAlbumBtn = new JButton("Add Album");
+        addAlbumBtn.addActionListener(e -> app.addAlbum());
+        buttonPanel.add(addAlbumBtn);
+
+        JButton updateAlbumBtn = new JButton("Update Album");
+        updateAlbumBtn.addActionListener(e -> app.updateAlbum());
+        buttonPanel.add(updateAlbumBtn);
+
+        JButton deleteAlbumBtn = new JButton("Delete Album");
+        deleteAlbumBtn.addActionListener(e -> app.deleteAlbum());
+        buttonPanel.add(deleteAlbumBtn);
+
+        JButton showAlbumsBtn = new JButton("Show Albums");
+        showAlbumsBtn.addActionListener(e -> app.showAlbums());
+        buttonPanel.add(showAlbumsBtn);
+
+        JButton addTrackBtn = new JButton("Add Track");
+        addTrackBtn.addActionListener(e -> app.addTrack());
+        buttonPanel.add(addTrackBtn);
+
+        JButton updateTrackBtn = new JButton("Update Track");
+        updateTrackBtn.addActionListener(e -> app.updateTrack());
+        buttonPanel.add(updateTrackBtn);
+
+        JButton deleteTrackBtn = new JButton("Delete Track");
+        deleteTrackBtn.addActionListener(e -> app.deleteTrack());
+        buttonPanel.add(deleteTrackBtn);
+
+        JButton showTracksBtn = new JButton("Show Tracks");
+        showTracksBtn.addActionListener(e -> app.showTracks());
+        buttonPanel.add(showTracksBtn);
+
+        frame.add(buttonPanel, BorderLayout.SOUTH);
+        frame.setVisible(true);
     }
 
-    public DefaultTableModel getTableModel() {
-        return tableModel;
+    public int getCollectionId() {
+        int row = collectionTable.getSelectedRow();
+        if (row == -1) return -1;
+        return (int) collectionModel.getValueAt(row, 0);
+    }
+
+    public int getAlbumId() {
+        int row = albumTable.getSelectedRow();
+        if (row == -1) return -1;
+        return (int) albumModel.getValueAt(row, 0);
+    }
+
+    public int getTrackId() {
+        int row = trackTable.getSelectedRow();
+        if (row == -1) return -1;
+        return (int) trackModel.getValueAt(row, 0);
+    }
+
+    public void setTableData(String tableName, String[] columns, Object[][] data) {
+        DefaultTableModel model;
+        if (tableName.equals("Collections")) {
+            model = collectionModel;
+        } else if (tableName.equals("Albums")) {
+            model = albumModel;
+        } else {
+            model = trackModel;
+        }
+        model.setRowCount(0);
+        for (Object[] row : data) {
+            model.addRow(row);
+        }
     }
 }
+
+
+
